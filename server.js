@@ -37,6 +37,31 @@ app.get('/magic/:question', (req, res) => {
 })
 
 /*********************
+Bottles of Beer
+**********************/
+
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>99 Bottles of Beer on the Wall</h1>
+    <a href="./98">Take one down and pass it around!</a>
+    `)
+});
+
+app.get('/:number', (req,res) => {
+  if (req.params.number == 0) {
+    res.send(`
+    <h1>No more beer left!</h1>
+    <a href="./">Start over!</a>
+    `)
+  } else {
+    res.send(`
+    <h1>${req.params.number} bottles of beer on the wall</h1>
+    <a href = "./${req.params.number - 1}">Take one down and pass it around!</a>
+    `)
+  }
+});
+
+/*********************
 Listen
 **********************/
 
